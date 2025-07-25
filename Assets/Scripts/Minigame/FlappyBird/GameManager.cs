@@ -15,6 +15,8 @@ namespace FlappyBird
         UIManager uiManager;
         public UIManager UIManager { get { return uiManager; } }
 
+        public GameObject gameStartUI;
+
         private void Awake()
         {
             gameManager = this;
@@ -23,7 +25,9 @@ namespace FlappyBird
 
         private void Start()
         {
+            gameStartUI.SetActive(true);
             uiManager.UpdateScore(0);
+            Time.timeScale = 0;
         }
 
         public void GameOver()
@@ -38,6 +42,11 @@ namespace FlappyBird
             uiManager.UpdateScore(curScore);
         }
 
+        public void StartGame()
+        {
+            gameStartUI.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 }
 

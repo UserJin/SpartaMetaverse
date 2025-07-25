@@ -41,8 +41,9 @@ public class SceneLoader : MonoBehaviour
         if (_instance == null)
         {
             GameObject obj = new GameObject();
-            obj.name = "ScoreManager";
             _instance = obj.AddComponent<SceneLoader>();
+            obj.name = $"{_instance.GetType().Name}";
+            _instance.prevSceneIdx = -1;
             DontDestroyOnLoad(obj);
         }
     }
