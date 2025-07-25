@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace FlappyBird
@@ -52,7 +51,7 @@ namespace FlappyBird
 
         public void ReturnBtn()
         {
-            SceneManager.LoadScene(0); // 이 부분 하드코딩이라 수정 필요할 듯
+            SceneLoader.Instance.LoadScene("LobbyScene");
         }
     }
 

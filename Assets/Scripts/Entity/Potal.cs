@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Potal : MonoBehaviour, IInteractable
 {
@@ -38,12 +37,11 @@ public class Potal : MonoBehaviour, IInteractable
 
     public void LoadMinigame()
     {
-        SceneManager.LoadScene(scneneNum);
+        SceneLoader.Instance.LoadScene(scneneNum);
     }
 
     public void OnInteract()
     {
-        //Debug.Log(gameObject.name);
         LoadMinigame();
     }
 }
