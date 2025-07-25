@@ -41,7 +41,7 @@ public class PlayerController : BaseController
 
             if (interactableObj != null)
             {
-                interactableObj.OnInteract();
+                interactableObj.OnInteract(this);
             }
         }
     }

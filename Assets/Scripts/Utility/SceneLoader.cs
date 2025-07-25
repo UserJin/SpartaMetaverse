@@ -68,4 +68,9 @@ public class SceneLoader : MonoBehaviour
         int tmpSceneIdx = prevSceneIdx;
         LoadScene(tmpSceneIdx);
     }
+
+    public void LoadLobbySceneWithResult()
+    {
+
+    }
 }

@@ -10,13 +10,15 @@ public class Potal : MonoBehaviour, IInteractable
     // 플레이어 레이어
     [SerializeField] LayerMask targetLayor;
     // UI
-    private TextMeshProUGUI entranceText;
+    private TextMeshProUGUI interactText;
+
+    private PlayerController _player;
 
     private void Awake()
     {
         targetLayor = LayerMask.GetMask("Player");
-        entranceText = transform.GetComponentInChildren<TextMeshProUGUI>(true);
-        entranceText.gameObject.SetActive(false);
+        interactText = transform.GetComponentInChildren<TextMeshProUGUI>(true);
+        interactText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +26,7 @@ public class Potal : MonoBehaviour, IInteractable
         if (targetLayor.value != (targetLayor | (1 << collision.gameObject.layer)))
             return;
 
-        entranceText.gameObject.SetActive(true);
+        interactText.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -32,7 +34,7 @@ public class Potal : MonoBehaviour, IInteractable
         if (targetLayor.value != (targetLayor | (1 << collision.gameObject.layer)))
             return;
 
-        entranceText.gameObject.SetActive(false);
+        interactText.gameObject.SetActive(false);
     }
 
     public void LoadMinigame()
@@ -40,8 +42,9 @@ public class Potal : MonoBehaviour, IInteractable
         SceneLoader.Instance.LoadScene(scneneNum);
     }
 
-    public void OnInteract()
+    public void OnInteract(PlayerController player)
     {
+        _player = player;
         LoadMinigame();
     }
 }
