@@ -25,12 +25,12 @@ public class ArrowGenerator : MonoBehaviour
     {
         while (true)
         {
-            float spawnX = Random.Range(-4f, 4f);
+            float spawnX = Random.Range(-4.5f, 4.5f);
 
             Arrow arrow = Instantiate(arrowPrefab, new Vector3(spawnX, spawnY, 0), Quaternion.identity);
-            arrow.Init(arrowSpeed);
+            arrow.Init(arrowSpeed + Random.Range(0, 2f));
 
-            yield return new WaitForSeconds(genCoolTime);
+            yield return new WaitForSeconds(genCoolTime - Random.Range(0, 0.5f));
         }
     }
 }
