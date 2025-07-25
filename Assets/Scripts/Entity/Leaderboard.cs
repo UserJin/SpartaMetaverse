@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class Leaderboard : MonoBehaviour, IInteractable
 {
     public GameObject leaderboardUI;
-    public TextMeshProUGUI bestScoreText;
+    public TextMeshProUGUI flappyBirdbestScoreText;
+    public TextMeshProUGUI arrowAvoidbestScoreText;
     private TextMeshProUGUI interactText;
 
     // 플레이어 레이어
@@ -16,7 +17,8 @@ public class Leaderboard : MonoBehaviour, IInteractable
     private PlayerController player;
     private bool isLeaderboardOpen = false;
 
-    private const string BestScoreKey = "BestScore";
+    private const string FlappyBirdBestScoreKey = "FlappyBirdBestScore";
+    private const string ArrowAvoidBestScoreKey = "ArrowAvoidBestScore";
 
     private void Awake()
     {
@@ -59,8 +61,11 @@ public class Leaderboard : MonoBehaviour, IInteractable
 
         isLeaderboardOpen = true;
 
-        int bestScore = PlayerPrefs.GetInt(BestScoreKey);
-        bestScoreText.text = $"Best Score: {bestScore}";
+        int flappybirdBestScore = PlayerPrefs.GetInt(FlappyBirdBestScoreKey);
+        flappyBirdbestScoreText.text = $"Best Score: {flappybirdBestScore}";
+
+        int arrowAvoidBestScore = PlayerPrefs.GetInt(ArrowAvoidBestScoreKey);
+        arrowAvoidbestScoreText.text = $"Best Score: {arrowAvoidBestScore}";
 
         interactText.gameObject.SetActive(false);
         leaderboardUI.SetActive(true);

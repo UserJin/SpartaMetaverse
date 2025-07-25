@@ -69,8 +69,8 @@ public class SceneLoader : MonoBehaviour
         LoadScene(tmpSceneIdx);
     }
 
-    public void LoadLobbySceneWithResult()
+    public void LoadMainScene(int resultScore)
     {
-
+        LoadScene(0);
     }
 }

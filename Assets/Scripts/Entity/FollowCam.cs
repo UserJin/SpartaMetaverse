@@ -16,8 +16,6 @@ public class FollowCam : MonoBehaviour
     private float cameraWidth;
     private float cameraHeight;
 
-    public Tilemap tilemap;
-
     private void Awake()
     {
         target = FindObjectOfType<PlayerController>().transform;
@@ -28,8 +26,6 @@ public class FollowCam : MonoBehaviour
         Camera cam = GetComponent<Camera>();
         cameraHeight = cam.orthographicSize;
         cameraWidth = cameraHeight * Screen.width / Screen.height;
-
-        Debug.Log(tilemap?.size);
     }
 
     private void FixedUpdate()

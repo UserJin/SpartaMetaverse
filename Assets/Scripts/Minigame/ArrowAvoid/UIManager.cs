@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace FlappyBird
+namespace ArrowAvoid
 {
     public class UIManager : MonoBehaviour
     {
@@ -14,9 +13,9 @@ namespace FlappyBird
         public TextMeshProUGUI bestScoreTxt;
         public TextMeshProUGUI ResultTxt;
 
-        public Image gameoverUI;
+        public GameObject gameoverUI;
 
-        private const string BestScoreKey = "FlappyBirdBestScore";
+        private const string BestScoreKey = "ArrowAvoidBestScore";
         [SerializeField] private int ClearCount = 10;
 
         // Start is called before the first frame update
@@ -29,7 +28,7 @@ namespace FlappyBird
         {
             curScoreTxt.text = $"Score: {score}";
             int bestScore = PlayerPrefs.GetInt(BestScoreKey);
-            if(score > bestScore)
+            if (score > bestScore)
             {
                 bestScore = score;
                 PlayerPrefs.SetInt(BestScoreKey, bestScore);
@@ -50,8 +49,8 @@ namespace FlappyBird
 
         public void ReturnBtn()
         {
+            Time.timeScale = 1f;
             SceneLoader.Instance.LoadScene("LobbyScene");
         }
     }
-
 }

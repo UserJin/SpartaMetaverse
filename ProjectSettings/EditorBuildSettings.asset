@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlappyBirdGameScene.unity
     guid: 427fff5616937fe46bae003b6e50e139
+  - enabled: 1
+    path: Assets/Scenes/ArrowAvoidGame.unity
+    guid: f0256a7ffa71f70438ae6952580e964c
   m_configObjects: {}
