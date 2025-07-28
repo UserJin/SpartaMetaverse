@@ -28,4 +28,10 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.SetBool(IsDamage, false);
     }
+
+    public void ToggleAnimator()
+    {
+        animator.SetBool(IsMoving, false);
+        animator.enabled = !animator.enabled;
+    }
 }

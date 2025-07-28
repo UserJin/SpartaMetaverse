@@ -7,10 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : BaseController
 {
     private GameManager gameManager;
+    private ResourceController resourceController;
+    private RidingController ridingController;
 
     public void Init(GameManager gameManager)
     {
         this.gameManager = gameManager;
+        resourceController = GetComponent<ResourceController>();
+        ridingController = GetComponent<RidingController>();
     }
 
     protected override void HandleAction()
@@ -21,6 +25,7 @@ public class PlayerController : BaseController
     void OnMove(InputValue inputValue)
     {
         moveDirection = inputValue.Get<Vector2>().normalized;
+        if (ridingController.IsRide) ridingController.SetMountFlip(MoveDirection);
     }
 
     private void OnDrawGizmos()
@@ -48,18 +53,9 @@ public class PlayerController : BaseController
 
     void OnRide()
     {
-        // 캐릭터의 탑승 여부 확인
-
-        // 탑승 상태가 아니면
-        // 탑승 상태 활성화
-        // 캐릭터 스프라이트 위로 올리기
-        // 탑승물 스프라이트 활성화
-        // 캐릭터 속도 변경
-
-        // 탑승 상태라면
-        // 탑승 상태 비활성화
-        // 캐릭터 스프라이트 원위치
-        // 탑승물 스프라이트 비활성화
-        // 캐릭터 속도 원상복귀
+        if(ridingController.IsRide)
+            ridingController.DeactiveRide();
+        else
+            ridingController.ActiveRide();
     }
 }
