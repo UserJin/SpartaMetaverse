@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public PlayerController player {  get; private set; }
     private ResourceController _playerResourceController;
 
-    private UIManager uiManager;
     public static bool isFirstLoading = true;
 
     private void Awake()
@@ -18,7 +17,5 @@ public class GameManager : MonoBehaviour
 
         player = FindFirstObjectByType<PlayerController>();
         player.Init(this);
-
-        uiManager = FindObjectOfType<UIManager>();
     }
 }
