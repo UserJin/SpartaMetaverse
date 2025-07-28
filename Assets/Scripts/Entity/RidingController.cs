@@ -7,8 +7,9 @@ using UnityEngine.InputSystem;
 public class RidingController : MonoBehaviour
 {
     private ResourceController playerResourceController;
+    private BoxCollider2D playerCollider;
+
     private StatHandler mountStat;
-    private AnimationHandler mountAnimationHandler;
     private SpriteRenderer mountSprite;
 
     public GameObject mountObj;
@@ -18,10 +19,14 @@ public class RidingController : MonoBehaviour
     public bool IsRide { get; set; } = false;
 
     private int originSpeed = 0;
+    private Vector2 originColiderSize = Vector2.zero;
 
     private void Awake()
     {
         playerResourceController = FindObjectOfType<PlayerController>().GetComponent<ResourceController>();
+        playerCollider = playerResourceController.GetComponent<BoxCollider2D>();
+        originColiderSize = playerCollider.size;
+
         mountStat = mountObj.GetComponent<StatHandler>();
         mountSprite = mountObj.GetComponentInChildren<SpriteRenderer>();
         mountObj.SetActive(false);
@@ -35,8 +40,11 @@ public class RidingController : MonoBehaviour
         playerResourceController.ToggleAimator();
         // 플레이어 스프라이트 위치변경
         playerResourceController.gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.transform.position += new Vector3(0, spriteDist, 0);
+        // 플레이어 콜라이더 크기 변경
+        playerCollider.size = new Vector2(playerCollider.size.x, 2);
         // 탑승물 활성화
         mountObj.SetActive(true);
+        mountSprite.flipX = playerResourceController.GetComponentInChildren<SpriteRenderer>().flipX;
         // 스탯 변경
         originSpeed = playerResourceController.GetSpeed();
         playerResourceController.SetSpeed(mountStat.Speed);
@@ -49,6 +57,8 @@ public class RidingController : MonoBehaviour
         playerResourceController.ToggleAimator();
         // 플레이어 스프라이트 원위치
         playerResourceController.gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.transform.position -= new Vector3(0, spriteDist, 0);
+        // 플레이어 콜라이더 크기 변경
+        playerCollider.size = originColiderSize;
         // 탑승물 활성화
         mountObj.SetActive(false);
         // 스탯 변경

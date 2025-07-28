@@ -31,7 +31,8 @@ public class AnimationHandler : MonoBehaviour
 
     public void ToggleAnimator()
     {
-        animator.SetBool(IsMoving, false);
+        animator.Play("Idle", 0, 0);
+        animator.Update(0f);
         animator.enabled = !animator.enabled;
     }
 }
